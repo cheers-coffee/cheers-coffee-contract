@@ -11,11 +11,20 @@ contract("Donate", (accounts) => {
     contract = await Donate.new();
   });
 
+  it("should receiveAddress is same as userA", async () => {
+    const receiveAddress = await contract.getReceiveAddress({ from: userA });
+    expect(receiveAddress.to.equal(userA));
+  });
+
+  it("should only owner can access to getReceiveAddress", async () => {
+    assert.throws(await contract.getReceiveAddress({ from: userB }), "should throw");
+  });
+
   it("should sum is sum of donations", async () => {
-    const eth = web3.toWei(2, 'ether');
+    const eth = web3.utils.toWei("2", 'ether');
     await contract.donate({ from: userB, value: eth });
     const sum = await contract.sum({ from: userB });
-    expect(sum).to.equal(eth);
+    expect(sum.toString()).to.equal(eth);
   });
 });
 

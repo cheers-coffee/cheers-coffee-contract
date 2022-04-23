@@ -16,6 +16,10 @@ contract Donate is Ownable {
         receiveAddress = payable(_msgSender());
     }
 
+    function getReceiveAddress() view external onlyOwner returns (address) {
+        return receiveAddress;
+    }
+
     /// @notice 받은 커피의 개수를 보여줌. 소수점 없이 정수.
     /// @return 받은 커피의 개수.
     function getReceivedCoffee() view external returns (uint) {
