@@ -12,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.3.6"
+    "chai": "^4.3.6",
+    "dotenv": "^16.0.0",
+    "truffle-hdwallet-provider": "^1.0.17",
+    "web3": "^1.7.3"
   }
 }
